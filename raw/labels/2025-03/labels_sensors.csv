@@ -1,0 +1,5 @@
+start_ts,end_ts,sensor,anomaly_type,severity
+2025-03-23 14:00:00+00:00,2025-03-23 16:00:00+00:00,temp_int_c,A1_sensor_stuck,med
+2025-03-19 00:00:00+00:00,2025-03-19 23:45:00+00:00,temp_int_c,A2_sensor_drift,low
+2025-03-19 12:00:00+00:00,2025-03-19 12:00:00+00:00,power_total_kw,A3_meter_spike,high
+2025-03-19 15:00:00+00:00,2025-03-19 15:00:00+00:00,power_total_kw,A3_meter_spike,high

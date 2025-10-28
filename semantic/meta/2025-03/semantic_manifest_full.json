@@ -1,0 +1,9 @@
+{
+  "version": "1.2",
+  "month": "2025-03",
+  "input_semantic_bms": "/home/amina/DTE/jne_project/semantic/2025-03/training_room_semantic_bms.ttl",
+  "iot_csv_refined": "minio://refined/sensors/2025-03/zone_101_sensors_refined.csv",
+  "occupancy_csv_refined": "minio://refined/occupancy/2025-03/occupancy_refined.csv",
+  "output_ttl": "/home/amina/DTE/jne_project/semantic/2025-03/training_room_semantic_full.ttl",
+  "ts_id_pattern": "<csv_uri>::<column>"
+}

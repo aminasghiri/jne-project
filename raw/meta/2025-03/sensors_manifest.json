@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "time": {
+    "start_utc": "2025-03-01 00:00:00+00:00",
+    "days": 30,
+    "dt_minutes": 15,
+    "rows": 2880
+  },
+  "paths": {
+    "base": "/home/amina/DTE/jne_project/raw",
+    "sensors_csv": "/home/amina/DTE/jne_project/raw/sensors/2025-03/zone_101_sensors.csv",
+    "labels_csv": "/home/amina/DTE/jne_project/raw/labels/2025-03/labels_sensors.csv",
+    "month": "2025-03"
+  },
+  "columns": {
+    "time": "ts",
+    "zone_id": "zone_id",
+    "signals": [
+      {
+        "name": "temp_int_c",
+        "unit": "Celsius",
+        "brick_hint": "Temperature_Sensor"
+      },
+      {
+        "name": "rh_int_pct",
+        "unit": "Percent",
+        "brick_hint": "Humidity_Sensor"
+      },
+      {
+        "name": "co2_ppm",
+        "unit": "PPM",
+        "brick_hint": "CO2_Sensor"
+      },
+      {
+        "name": "pir_bin",
+        "unit": "One",
+        "brick_hint": "Occupancy_Sensor"
+      },
+      {
+        "name": "power_total_kw",
+        "unit": "kW",
+        "brick_hint": "Power_Sensor"
+      }
+    ]
+  },
+  "rng_seed": 42
+}

@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "month": "2025-03",
+  "ttl_input": "/home/amina/DTE/jne_project/semantic/2025-03/training_room_semantic_full.ttl",
+  "outputs": {
+    "ttl": "/home/amina/DTE/jne_project/model/2025-03/training_room_model.ttl",
+    "csv": "/home/amina/DTE/jne_project/model/2025-03/training_room_model_dataset.csv",
+    "parquet": "/home/amina/DTE/jne_project/model/2025-03/training_room_model_dataset.parquet"
+  },
+  "rows": 2880,
+  "columns": [
+    "ts",
+    "Occupancy_Level",
+    "Plug_Power_Sensor",
+    "Total_Power_Sensor",
+    "Weather_GHI_Sensor",
+    "Weather_RH_Sensor",
+    "Weather_Temp_Sensor",
+    "Weather_Wind_Sensor",
+    "HVAC_Power_Sensor",
+    "HVAC_State",
+    "Lighting_Power_Sensor",
+    "Lighting_State",
+    "Occupancy_Sensor",
+    "Zone_Temp_Sensor",
+    "Zone_Temp_Setpoint",
+    "BIM_area_m2",
+    "BIM_height_m",
+    "BIM_length_m",
+    "BIM_max_occupancy",
+    "BIM_target_occupancy_rate",
+    "BIM_use_type",
+    "BIM_volume_m3",
+    "BIM_width_m"
+  ],
+  "mapping_count": 17,
+  "bim_keys": [
+    "BIM_area_m2",
+    "BIM_height_m",
+    "BIM_length_m",
+    "BIM_max_occupancy",
+    "BIM_target_occupancy_rate",
+    "BIM_use_type",
+    "BIM_volume_m3",
+    "BIM_width_m"
+  ]
+}

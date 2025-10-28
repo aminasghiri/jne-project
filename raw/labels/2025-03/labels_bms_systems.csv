@@ -1,0 +1,3 @@
+start_ts,end_ts,variable,anomaly_type,severity
+2025-03-26 06:00:00+00:00,2025-03-26 08:00:00+00:00,system,A4_valve_stuck_open,med
+2025-03-27 10:00:00+00:00,2025-03-27 12:00:00+00:00,system,A5_damper_stuck_closed,med

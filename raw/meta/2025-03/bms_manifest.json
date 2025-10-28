@@ -1,0 +1,67 @@
+{
+  "version": "1.0",
+  "time": {
+    "start_utc": "2025-03-01 00:00:00+00:00",
+    "days": 30,
+    "dt_minutes": 15,
+    "rows": 2880
+  },
+  "paths": {
+    "base": "/home/amina/DTE/jne_project/raw",
+    "bms_csv": "/home/amina/DTE/jne_project/raw/bms/2025-03/bms.csv",
+    "labels_csv": "/home/amina/DTE/jne_project/raw/labels/2025-03/labels_bms_systems.csv",
+    "month": "2025-03"
+  },
+  "columns": {
+    "time": "ts",
+    "zone_id": "zone_id",
+    "signals": [
+      {
+        "name": "T_int",
+        "unit": "Celsius",
+        "hint": "Temperature_Sensor"
+      },
+      {
+        "name": "T_int_true",
+        "unit": "Celsius",
+        "hint": "Temperature_Sensor"
+      },
+      {
+        "name": "hvac_state",
+        "unit": "One",
+        "hint": "Command/Status"
+      },
+      {
+        "name": "lighting_state",
+        "unit": "One",
+        "hint": "Command/Status"
+      },
+      {
+        "name": "T_set",
+        "unit": "Celsius",
+        "hint": "Temperature_Setpoint"
+      },
+      {
+        "name": "P_hvac",
+        "unit": "kW",
+        "hint": "Power_Sensor"
+      },
+      {
+        "name": "P_lighting",
+        "unit": "kW",
+        "hint": "Power_Sensor"
+      },
+      {
+        "name": "P_plug",
+        "unit": "kW",
+        "hint": "Power_Sensor"
+      },
+      {
+        "name": "P_total",
+        "unit": "kW",
+        "hint": "Power_Sensor"
+      }
+    ]
+  },
+  "rng_seed": 42
+}

@@ -1,0 +1,187 @@
+@prefix bf: <https://brickschema.org/schema/BrickFrame#> .
+@prefix brick1: <https://brickschema.org/schema/1.1/Brick#> .
+@prefix ex: <http://example.org/training#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:Campus_ENSMR a brick1:Campus ;
+    rdfs:label "ENSMR Campus" ;
+    brick1:hasPart ex:Building_ENSMR .
+
+ex:Environmental_System a brick1:Building_System ;
+    brick1:hasPoint ex:CO2_Sensor_1,
+        ex:Humidity_Sensor_1,
+        ex:Occupancy_Sensor_1,
+        ex:Temp_Sensor_1 .
+
+ex:HVAC_System a brick1:HVAC_System ;
+    brick1:hasPart ex:AC_Unit_1 .
+
+ex:Lighting_System a brick1:Lighting_System ;
+    brick1:hasPart ex:LED_Luminaire_1 .
+
+ex:Weather_GHI_Sensor a brick1:Solar_Irradiance_Sensor ;
+    rdfs:label "Weather GHI Sensor" ;
+    qudt:unit unit:W_PER_M2 ;
+    brick1:hasLocation ex:Outside_Air ;
+    brick1:isPointOf ex:Weather_Station_1 ;
+    bf:hasTimeseriesId "minio://refined/weather/2025-03/weather_refined.csv::weather_ghi_wm2"^^xsd:string .
+
+ex:Weather_RH_Sensor a brick1:Outside_Air_Humidity_Sensor ;
+    rdfs:label "Weather RH Sensor" ;
+    qudt:unit unit:PERCENT ;
+    brick1:hasLocation ex:Outside_Air ;
+    brick1:isPointOf ex:Weather_Station_1 ;
+    bf:hasTimeseriesId "minio://refined/weather/2025-03/weather_refined.csv::weather_rh_pct"^^xsd:string .
+
+ex:Weather_Temp_Sensor a brick1:Outside_Air_Temperature_Sensor ;
+    rdfs:label "Weather Temp Sensor" ;
+    qudt:unit unit:DEG_C ;
+    brick1:hasLocation ex:Outside_Air ;
+    brick1:isPointOf ex:Weather_Station_1 ;
+    bf:hasTimeseriesId "minio://refined/weather/2025-03/weather_refined.csv::weather_temp_c"^^xsd:string .
+
+ex:Weather_Wind_Sensor a brick1:Wind_Speed_Sensor ;
+    rdfs:label "Weather Wind Sensor" ;
+    qudt:unit unit:M_PER_SEC ;
+    brick1:hasLocation ex:Outside_Air ;
+    brick1:isPointOf ex:Weather_Station_1 ;
+    bf:hasTimeseriesId "minio://refined/weather/2025-03/weather_refined.csv::weather_wind_ms"^^xsd:string .
+
+ex:Building_ENSMR a brick1:Building ;
+    rdfs:label "Teaching Building" ;
+    brick1:hasPart ex:Training_Room_101,
+        ex:Wall_1,
+        ex:Wall_2,
+        ex:Wall_3,
+        ex:Wall_4,
+        ex:Weather_Station_1 .
+
+ex:CO2_Sensor_1 a brick1:CO2_Sensor ;
+    rdfs:label "CO2 Sensor 1" ;
+    qudt:unit unit:PPM ;
+    brick1:hasLocation ex:Training_Room_101 ;
+    brick1:isPointOf ex:AC_Unit_1 ;
+    bf:hasTimeseriesId "minio://raw/sensors/2025-03/zone_101_sensors.csv"^^xsd:string .
+
+ex:Humidity_Sensor_1 a brick1:Relative_Humidity_Sensor ;
+    rdfs:label "Humidity Sensor 1" ;
+    qudt:unit unit:PERCENT ;
+    brick1:hasLocation ex:Training_Room_101 ;
+    brick1:isPointOf ex:AC_Unit_1 ;
+    bf:hasTimeseriesId "minio://raw/sensors/2025-03/zone_101_sensors.csv"^^xsd:string .
+
+ex:Occupancy_Sensor_1 a brick1:Occupancy_Sensor ;
+    rdfs:label "Occupancy Sensor 1" ;
+    qudt:unit unit:UNITLESS ;
+    brick1:hasLocation ex:Training_Room_101 ;
+    brick1:isPointOf ex:LED_Luminaire_1 ;
+    bf:hasTimeseriesId "minio://raw/occupancy/2025-03/occupancy.csv"^^xsd:string .
+
+ex:Temp_Sensor_1 a brick1:Temperature_Sensor ;
+    rdfs:label "Temp Sensor 1" ;
+    qudt:unit unit:DEG_C ;
+    brick1:hasLocation ex:Training_Room_101 ;
+    brick1:isPointOf ex:AC_Unit_1 ;
+    bf:hasTimeseriesId "minio://raw/sensors/2025-03/zone_101_sensors.csv"^^xsd:string .
+
+ex:Wall_1 a ex:Wall ;
+    rdfs:label "Wall_1" ;
+    ex:conductivity_W_mK 1.4e+00 ;
+    ex:orientation "North"^^xsd:string ;
+    ex:r_value_m2K_W 2.1e+00 ;
+    ex:thickness_m 3e-01 ;
+    ex:u_value_W_m2K 4.761905e-01 ;
+    ex:visible_transmittance 0e+00 ;
+    qudt:unit unit:M,
+        unit:M2__K__W,
+        unit:UNITLESS,
+        unit:W__M2__K,
+        unit:W__M__K .
+
+ex:Wall_2 a ex:Wall ;
+    rdfs:label "Wall_2" ;
+    ex:conductivity_W_mK 1.4e+00 ;
+    ex:orientation "East"^^xsd:string ;
+    ex:r_value_m2K_W 2.1e+00 ;
+    ex:thickness_m 3e-01 ;
+    ex:u_value_W_m2K 4.761905e-01 ;
+    ex:visible_transmittance 0e+00 ;
+    qudt:unit unit:M,
+        unit:M2__K__W,
+        unit:UNITLESS,
+        unit:W__M2__K,
+        unit:W__M__K .
+
+ex:Wall_3 a ex:Wall ;
+    rdfs:label "Wall_3" ;
+    ex:conductivity_W_mK 1.4e+00 ;
+    ex:orientation "South"^^xsd:string ;
+    ex:r_value_m2K_W 2.1e+00 ;
+    ex:thickness_m 3e-01 ;
+    ex:u_value_W_m2K 4.761905e-01 ;
+    ex:visible_transmittance 0e+00 ;
+    qudt:unit unit:M,
+        unit:M2__K__W,
+        unit:UNITLESS,
+        unit:W__M2__K,
+        unit:W__M__K .
+
+ex:Wall_4 a ex:Wall ;
+    rdfs:label "Wall_4" ;
+    ex:conductivity_W_mK 1.4e+00 ;
+    ex:orientation "West"^^xsd:string ;
+    ex:r_value_m2K_W 2.1e+00 ;
+    ex:thickness_m 3e-01 ;
+    ex:u_value_W_m2K 4.761905e-01 ;
+    ex:visible_transmittance 0e+00 ;
+    qudt:unit unit:M,
+        unit:M2__K__W,
+        unit:UNITLESS,
+        unit:W__M2__K,
+        unit:W__M__K .
+
+ex:LED_Luminaire_1 a brick1:Luminaire ;
+    rdfs:label "LED Luminaire 1" ;
+    ex:electric_power_kW 2.5e-01 ;
+    ex:lighting_type "LED"^^xsd:string ;
+    ex:measured_illuminance_lux 4.5e+02 ;
+    ex:rated_flux_lm 1.2e+03 ;
+    qudt:unit unit:KiloW,
+        unit:Lumen,
+        unit:Lux ;
+    brick1:hasLocation ex:Training_Room_101 .
+
+ex:AC_Unit_1 a brick1:Air_Conditioner ;
+    rdfs:label "AC Unit 1" ;
+    ex:commissioning_date "2023-09-01"^^xsd:date ;
+    ex:electrical_power_kW 2.3e+00 ;
+    ex:mode "Cooling"^^xsd:string ;
+    ex:thermal_power_kW 4.5e+00 ;
+    qudt:unit unit:KiloW ;
+    brick1:hasLocation ex:Training_Room_101 .
+
+ex:Outside_Air a brick1:Outside_Air ;
+    rdfs:label "Outside Air" .
+
+ex:Weather_Station_1 a brick1:Weather_Station ;
+    rdfs:label "Weather Station 1" ;
+    brick1:hasLocation ex:Outside_Air .
+
+ex:Training_Room_101 a brick1:Room ;
+    rdfs:label "Training Room 101" ;
+    ex:area_m2 4.8e+01 ;
+    ex:height_m 3e+00 ;
+    ex:length_m 8e+00 ;
+    ex:max_occupancy 20 ;
+    ex:target_occupancy_rate 7.5e-01 ;
+    ex:use_type "Classroom"^^xsd:string ;
+    ex:volume_m3 1.44e+02 ;
+    ex:width_m 6e+00 ;
+    qudt:unit unit:M,
+        unit:M2,
+        unit:M3,
+        unit:PERCENT .
+

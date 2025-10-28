@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "month": "2025-03",
+  "input_semantic_ttl": "/home/amina/DTE/jne_project/semantic/2025-03/training_room_semantic_bms.ttl",
+  "fused_ref_csv_uri": "minio://refined/fused/2025-03/iot_occupancy_15min.csv",
+  "added_points": {
+    "iot": [
+      "temp_int_c",
+      "rh_int_pct",
+      "co2_ppm",
+      "pir_bin",
+      "power_total_kw"
+    ],
+    "occupancy": [
+      "presence (via pir_bin)",
+      "level"
+    ]
+  },
+  "ts_id_pattern": "<csv_uri>::<column>"
+}

@@ -1,0 +1,14 @@
+{
+  "version": "1.1",
+  "month": "2025-03",
+  "inputs": {
+    "room_ttl": "/home/amina/DTE/jne_project/refined/brick/2025-03/training_room.ttl",
+    "weather_csv_refined": "minio://refined/weather/2025-03/weather_refined.csv"
+  },
+  "output_ttl": "/home/amina/DTE/jne_project/semantic/2025-03/training_room_semantic.ttl",
+  "design": {
+    "weather_container": "brick:Weather_Station",
+    "location": "brick:Outside_Air"
+  },
+  "ts_id_pattern": "<csv_uri>::<column>"
+}

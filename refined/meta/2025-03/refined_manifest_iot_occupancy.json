@@ -1,0 +1,73 @@
+{
+  "version": "1.0",
+  "month": "2025-03",
+  "inputs": {
+    "iot_raw": "/home/amina/DTE/jne_project/raw/sensors/2025-03/zone_101_sensors.csv",
+    "occupancy_raw": "/home/amina/DTE/jne_project/raw/occupancy/2025-03/occupancy.csv"
+  },
+  "outputs": {
+    "iot_refined_csv": "/home/amina/DTE/jne_project/refined/iot/2025-03/sensors_refined.csv",
+    "occupancy_refined_csv": "/home/amina/DTE/jne_project/refined/occupancy/2025-03/occupancy_refined.csv",
+    "fused_csv": "/home/amina/DTE/jne_project/refined/fused/2025-03/iot_occupancy_15min.csv"
+  },
+  "qa": {
+    "iot": {
+      "temp_int_c": {
+        "n_raw_null": 0,
+        "n_clipped": 0,
+        "n_final_null": 0
+      },
+      "rh_int_pct": {
+        "n_raw_null": 0,
+        "n_clipped": 0,
+        "n_final_null": 0
+      },
+      "co2_ppm": {
+        "n_raw_null": 0,
+        "n_clipped": 0,
+        "n_final_null": 0
+      },
+      "pir_bin": {
+        "n_raw_null": 0,
+        "n_clipped": 0,
+        "n_final_null": 0
+      },
+      "power_total_kw": {
+        "n_raw_null": 0,
+        "n_clipped": 0,
+        "n_final_null": 0
+      }
+    },
+    "occupancy": {
+      "presence_null_final": 0,
+      "level_null_final": 0
+    }
+  },
+  "transform": {
+    "tz": "UTC",
+    "freq": "15min",
+    "interpolation_limit": 4,
+    "clips": {
+      "temp_int_c": [
+        -5,
+        50
+      ],
+      "rh_int_pct": [
+        0,
+        100
+      ],
+      "co2_ppm": [
+        350,
+        5000
+      ],
+      "pir_bin": [
+        0,
+        1
+      ],
+      "power_total_kw": [
+        0,
+        50
+      ]
+    }
+  }
+}

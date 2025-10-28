@@ -1,0 +1,88 @@
+{
+  "version": "1.0",
+  "month": "2025-03",
+  "input": "/home/amina/DTE/jne_project/raw/bms/2025-03/bms.csv",
+  "output": "/home/amina/DTE/jne_project/refined/bms/2025-03/bms_refined.csv",
+  "qa": {
+    "T_int": {
+      "n_raw_null": 0,
+      "n_clipped": 0,
+      "n_final_null": 0
+    },
+    "T_int_true": {
+      "n_raw_null": 0,
+      "n_clipped": 0,
+      "n_final_null": 0
+    },
+    "T_set": {
+      "n_raw_null": 0,
+      "n_clipped": 0,
+      "n_final_null": 0
+    },
+    "P_hvac": {
+      "n_raw_null": 0,
+      "n_clipped": 0,
+      "n_final_null": 0
+    },
+    "P_lighting": {
+      "n_raw_null": 0,
+      "n_clipped": 0,
+      "n_final_null": 0
+    },
+    "P_plug": {
+      "n_raw_null": 0,
+      "n_clipped": 0,
+      "n_final_null": 0
+    },
+    "P_total": {
+      "n_raw_null": 0,
+      "n_clipped": 0,
+      "n_final_null": 0
+    },
+    "hvac_state": {
+      "n_final_null": 0
+    },
+    "lighting_state": {
+      "n_final_null": 0
+    }
+  },
+  "transform": {
+    "tz": "UTC",
+    "freq": "15min",
+    "interpolation_limit": 4,
+    "clips": {
+      "T_int": [
+        0,
+        50
+      ],
+      "T_int_true": [
+        0,
+        50
+      ],
+      "T_set": [
+        5,
+        35
+      ],
+      "P_hvac": [
+        0,
+        100
+      ],
+      "P_lighting": [
+        0,
+        50
+      ],
+      "P_plug": [
+        0,
+        50
+      ],
+      "P_total": [
+        0,
+        150
+      ]
+    },
+    "states": [
+      "hvac_state",
+      "lighting_state"
+    ]
+  }
+}

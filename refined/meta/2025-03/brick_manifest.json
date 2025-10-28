@@ -1,0 +1,42 @@
+{
+  "version": "1.1",
+  "month": "2025-03",
+  "input_ifc": "/home/amina/DTE/jne_project/raw/ifc/2025-03/training_room.ifc",
+  "output_ttl": "/home/amina/DTE/jne_project/refined/brick/2025-03/training_room.ttl",
+  "namespaces": {
+    "brick": "https://brickschema.org/schema/1.1/Brick#",
+    "bf": "https://brickschema.org/schema/BrickFrame#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit/",
+    "ex": "http://example.org/training#"
+  },
+  "timeseries_prefix": "minio://raw",
+  "bim_fields_room": [
+    "ex:length_m",
+    "ex:width_m",
+    "ex:height_m",
+    "ex:area_m2",
+    "ex:volume_m3",
+    "ex:max_occupancy",
+    "ex:use_type",
+    "ex:target_occupancy_rate"
+  ],
+  "bim_fields_walls": [
+    "ex:orientation",
+    "ex:thickness_m",
+    "ex:r_value_m2K_W",
+    "ex:u_value_W_m2K",
+    "ex:conductivity_W_mK",
+    "ex:visible_transmittance"
+  ],
+  "bim_fields_equipment": [
+    "ex:thermal_power_kW",
+    "ex:electrical_power_kW",
+    "ex:mode",
+    "ex:commissioning_date",
+    "ex:rated_flux_lm",
+    "ex:measured_illuminance_lux",
+    "ex:electric_power_kW",
+    "ex:lighting_type"
+  ]
+}

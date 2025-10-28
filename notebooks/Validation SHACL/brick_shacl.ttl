@@ -1,0 +1,150 @@
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix brick: <https://brickschema.org/schema/1.1/Brick#> .
+@prefix bf:    <https://brickschema.org/schema/BrickFrame#> .
+@prefix qudt:  <http://qudt.org/schema/qudt/> .
+@prefix unit:  <http://qudt.org/vocab/unit/> .
+@prefix ex:    <http://example.org/training#> .
+
+###########
+# Capteurs
+###########
+ex:SensorShape
+  a sh:NodeShape ;
+  sh:targetClass brick:Sensor ;
+  sh:property [
+    sh:path brick:hasLocation ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:class brick:Location ;
+    sh:message "Un capteur doit avoir une localisation Brick." ;
+  ] ;
+  sh:property [
+    sh:path bf:hasTimeseriesId ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message "Un capteur doit référencer une time-series (bf:hasTimeseriesId string)." ;
+  ] ;
+  sh:property [
+    sh:path qudt:unit ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:message "Un capteur doit avoir une unité QUDT." ;
+  ] .
+
+# Exemples de spécialisations (optionnel mais utile)
+ex:TempSensorShape
+  a sh:NodeShape ;
+  sh:targetClass brick:Temperature_Sensor ;
+  sh:property [
+    sh:path qudt:unit ;
+    sh:in ( unit:DEG_C unit:KELVIN ) ;
+    sh:message "Temp sensor: unité attendue °C ou K." ;
+  ] .
+
+ex:CO2SensorShape
+  a sh:NodeShape ;
+  sh:targetClass brick:CO2_Sensor ;
+  sh:property [
+    sh:path qudt:unit ;
+    sh:hasValue unit:PPM ;
+    sh:message "CO2 sensor: unité attendue PPM." ;
+  ] .
+
+ex:RHsensorShape
+  a sh:NodeShape ;
+  sh:targetClass brick:Relative_Humidity_Sensor ;
+  sh:property [
+    sh:path qudt:unit ;
+    sh:hasValue unit:PERCENT ;
+    sh:message "RH sensor: unité attendue %." ;
+  ] .
+
+################
+# Systèmes Brick
+################
+ex:HVACSystemShape
+  a sh:NodeShape ;
+  sh:targetClass brick:HVAC_System ;
+  sh:or (
+    [ sh:property [ sh:path brick:hasPart ;  sh:minCount 1 ; sh:message "HVAC: au moins un équipement." ] ]
+    [ sh:property [ sh:path brick:hasPoint ; sh:minCount 1 ; sh:message "HVAC: au moins un point (capteur/commande)." ] ]
+  ) .
+
+ex:LightingSystemShape
+  a sh:NodeShape ;
+  sh:targetClass brick:Lighting_System ;
+  sh:or (
+    [ sh:property [ sh:path brick:hasPart ;  sh:minCount 1 ; sh:message "Lighting: au moins un luminaire." ] ]
+    [ sh:property [ sh:path brick:hasPoint ; sh:minCount 1 ; sh:message "Lighting: au moins un point." ] ]
+  ) .
+
+###################
+# Hiérarchie bâtiment
+###################
+ex:BuildingShape
+  a sh:NodeShape ;
+  sh:targetClass brick:Building ;
+  sh:property [
+    sh:path brick:hasPart ;
+    sh:minCount 1 ;
+    sh:message "Le bâtiment doit contenir au moins un espace (ex: Room)." ;
+  ] .
+
+ex:RoomShape
+  a sh:NodeShape ;
+  sh:targetClass brick:Room ;
+  sh:property [
+    sh:path brick:hasPart ;
+    sh:minCount 1 ;
+    sh:message "La salle doit référencer au moins un élément d’enveloppe (ex: mur)." ;
+  ] .
+
+############################
+# Enveloppe (murs) + propriétés
+############################
+# On suppose que tes murs portent le type ex:Wall et des propriétés ex:* définies dans ton graphe.
+ex:WallShape
+  a sh:NodeShape ;
+  sh:targetClass ex:Wall ;
+  sh:property [
+    sh:path ex:u_value_W_m2K ;
+    sh:minCount 1 ;
+    sh:datatype xsd:decimal ;
+    sh:message "Mur: ex:u_value_W_m2K requis (xsd:decimal)." ;
+  ] ;
+  sh:property [
+    sh:path ex:r_value_m2K_W ;
+    sh:minCount 1 ;
+    sh:datatype xsd:decimal ;
+    sh:message "Mur: ex:r_value_m2K_W requis (xsd:decimal)." ;
+  ] ;
+  sh:property [
+    sh:path ex:thickness_m ;
+    sh:minCount 1 ;
+    sh:datatype xsd:decimal ;
+    sh:message "Mur: ex:thickness_m requis (xsd:decimal)." ;
+  ] ;
+  sh:property [
+    sh:path ex:orientation ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message "Mur: ex:orientation requis (xsd:string)." ;
+  ] .
+
+################################
+# Contraintes génériques timeseries
+################################
+ex:TimeseriesIdIsString
+  a sh:NodeShape ;
+  sh:targetSubjectsOf bf:hasTimeseriesId ;
+  sh:property [
+    sh:path bf:hasTimeseriesId ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:message "bf:hasTimeseriesId doit être une chaîne." ;
+  ] .
+

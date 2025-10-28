@@ -1,0 +1,159 @@
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+@prefix qudt:  <http://qudt.org/schema/qudt/> .
+@prefix unit:  <http://qudt.org/vocab/unit/> .
+@prefix ex:    <http://example.org/training#> .
+
+#################################################################
+# Contexte site / bâtiment / pièce
+#################################################################
+
+ex:Site1 a brick:Site ;
+  rdfs:label "Didactic Site" .
+
+ex:Building1 a brick:Building ;
+  brick:isPartOf ex:Site1 ;
+  rdfs:label "Didactic Building" .
+
+ex:Room_101 a brick:Room ;
+  brick:isPartOf ex:Building1 ;
+  rdfs:label "Training Room 101" ;
+  # Méta BIM (littéraux exploitables dans le dataset tabulaire)
+  ex:Area_m2 "55.0"^^xsd:double ;
+  ex:Volume_m3 "165.0"^^xsd:double ;
+  ex:Orientation "North" ;
+  ex:Window_to_Wall_Ratio "0.25"^^xsd:double .
+
+#################################################################
+# Systèmes
+#################################################################
+
+ex:HVAC1 a brick:HVAC_System ;
+  brick:isPartOf ex:Building1 ;
+  brick:feeds ex:Room_101 ;
+  rdfs:label "HVAC for Room 101" .
+
+ex:Lighting1 a brick:Lighting_System ;
+  brick:isPartOf ex:Building1 ;
+  brick:feeds ex:Room_101 ;
+  rdfs:label "Lighting for Room 101" .
+
+ex:WeatherStation1 a brick:Weather_Station ;
+  brick:isPartOf ex:Site1 ;
+  rdfs:label "On-site Weather Station" .
+
+#################################################################
+# Enveloppe (exemples BIM)
+#################################################################
+
+ex:Wall_North a brick:Wall ;
+  brick:isPartOf ex:Room_101 ;
+  ex:U_Value_W_per_m2K "0.45"^^xsd:double .
+
+ex:Window1 a brick:Window ;
+  brick:isPartOf ex:Room_101 ;
+  ex:U_Value_W_per_m2K "2.10"^^xsd:double ;
+  ex:Area_m2 "8.0"^^xsd:double .
+
+#################################################################
+# Points/senseurs de la pièce (alignés à vos CSV)
+#################################################################
+
+# Température intérieure (sensors: temp_int_c)
+ex:T_Int_Sensor a brick:Temperature_Sensor ;
+  brick:isPointOf  ex:HVAC1 ;
+  brick:isLocatedIn ex:Room_101 ;
+  qudt:unit unit:DegreeCelsius ;
+  rdfs:label "Room air temperature" .
+
+# Humidité relative (sensors: rh_int_pct)
+ex:RH_Int_Sensor a brick:Humidity_Sensor ;
+  brick:isPointOf  ex:HVAC1 ;
+  brick:isLocatedIn ex:Room_101 ;
+  qudt:unit unit:Percent ;
+  rdfs:label "Room relative humidity" .
+
+# CO2 (sensors: co2_ppm)
+ex:CO2_Sensor a brick:CO2_Sensor ;
+  brick:isPointOf  ex:HVAC1 ;
+  brick:isLocatedIn ex:Room_101 ;
+  qudt:unit unit:PPM ;
+  rdfs:label "Room CO2" .
+
+# Présence (sensors: pir_bin)
+ex:PIR_Sensor a brick:Occupancy_Sensor ;
+  brick:isPointOf  ex:Lighting1 ;
+  brick:isLocatedIn ex:Room_101 ;
+  qudt:unit unit:One ;
+  rdfs:label "PIR presence" .
+
+# Puissance totale (sensors: power_total_kw)
+ex:Power_Total_Sensor a brick:Power_Sensor ;
+  brick:isPointOf  ex:Lighting1 ;
+  brick:isLocatedIn ex:Room_101 ;
+  qudt:unit unit:KiloW ;
+  rdfs:label "Total plug+lighting power" .
+
+#################################################################
+# Points BMS de l’HVAC (alignables à vos CSV bms.csv)
+#################################################################
+
+# Consigne de température (bms: T_set)
+ex:T_Setpoint a brick:Temperature_Setpoint ;
+  brick:isPointOf ex:HVAC1 ;
+  qudt:unit unit:DegreeCelsius ;
+  rdfs:label "Room temperature setpoint" .
+
+# État HVAC (bms: hvac_state)
+ex:HVAC_Status a brick:Status ;
+  brick:isPointOf ex:HVAC1 ;
+  qudt:unit unit:One ;
+  rdfs:label "HVAC on/off status" .
+
+#################################################################
+# Occupation agrégée (alignable à occupancy.csv)
+#################################################################
+
+ex:Occupancy_Level a brick:Occupancy_Sensor ;
+  brick:isPointOf  ex:Room_101 ;
+  brick:isLocatedIn ex:Room_101 ;
+  qudt:unit unit:One ;
+  rdfs:label "Occupancy level (low/normal/med/high encoded)" .
+
+#################################################################
+# Météo (alignée à weather.csv)
+#################################################################
+
+ex:WX_Temp a brick:Outside_Air_Temperature_Sensor ;
+  brick:isPointOf ex:WeatherStation1 ;
+  qudt:unit unit:DegreeCelsius ;
+  rdfs:label "Outside air temperature" .
+
+ex:WX_RH a brick:Outside_Air_Humidity_Sensor ;
+  brick:isPointOf ex:WeatherStation1 ;
+  qudt:unit unit:Percent ;
+  rdfs:label "Outside relative humidity" .
+
+ex:WX_Wind a brick:Wind_Speed_Sensor ;
+  brick:isPointOf ex:WeatherStation1 ;
+  qudt:unit unit:MeterPerSecond ;
+  rdfs:label "Wind speed 10m" .
+
+ex:WX_GHI a brick:Global_Horizontal_Irradiance_Sensor ;
+  brick:isPointOf ex:WeatherStation1 ;
+  qudt:unit unit:WPerSquareMeter ;
+  rdfs:label "Global horizontal irradiance" .
+
+#################################################################
+# Liaisons « hasPoint » (facultatif mais utile)
+#################################################################
+
+ex:HVAC1 brick:hasPoint ex:T_Int_Sensor, ex:RH_Int_Sensor, ex:CO2_Sensor,
+                       ex:T_Setpoint, ex:HVAC_Status .
+
+ex:Lighting1 brick:hasPoint ex:PIR_Sensor, ex:Power_Total_Sensor .
+
+ex:WeatherStation1 brick:hasPoint ex:WX_Temp, ex:WX_RH, ex:WX_Wind, ex:WX_GHI .
+

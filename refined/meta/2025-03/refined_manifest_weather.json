@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "month": "2025-03",
+  "input": "/home/amina/DTE/jne_project/raw/weather/2025-03/weather.csv",
+  "output": "/home/amina/DTE/jne_project/refined/weather/2025-03/weather_refined.csv",
+  "qa": {
+    "weather_temp_c": {
+      "n_raw_null": 0,
+      "n_clipped": 0,
+      "n_final_null": 0
+    },
+    "weather_rh_pct": {
+      "n_raw_null": 0,
+      "n_clipped": 0,
+      "n_final_null": 0
+    },
+    "weather_wind_ms": {
+      "n_raw_null": 0,
+      "n_clipped": 0,
+      "n_final_null": 0
+    },
+    "weather_ghi_wm2": {
+      "n_raw_null": 0,
+      "n_clipped": 0,
+      "n_final_null": 0
+    }
+  },
+  "transform": {
+    "tz": "UTC",
+    "freq": "15min",
+    "interpolation_limit": 4,
+    "clips": {
+      "weather_temp_c": [
+        -30,
+        55
+      ],
+      "weather_rh_pct": [
+        0,
+        100
+      ],
+      "weather_wind_ms": [
+        0,
+        60
+      ],
+      "weather_ghi_wm2": [
+        0,
+        1200
+      ]
+    }
+  }
+}

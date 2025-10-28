@@ -1,0 +1,42 @@
+{
+  "version": "1.1",
+  "month": "2025-03",
+  "input_semantic_weather": "/home/amina/DTE/jne_project/semantic/2025-03/training_room_semantic.ttl",
+  "bms_csv_refined": "minio://refined/bms/2025-03/bms_refined.csv",
+  "output_ttl": "/home/amina/DTE/jne_project/semantic/2025-03/training_room_semantic_bms.ttl",
+  "points": [
+    {
+      "name": "Zone_Temp_Sensor",
+      "col": "T_int"
+    },
+    {
+      "name": "Zone_Temp_Setpoint",
+      "col": "T_set"
+    },
+    {
+      "name": "HVAC_State",
+      "col": "hvac_state"
+    },
+    {
+      "name": "Lighting_State",
+      "col": "lighting_state"
+    },
+    {
+      "name": "HVAC_Power_Sensor",
+      "col": "P_hvac"
+    },
+    {
+      "name": "Lighting_Power_Sensor",
+      "col": "P_lighting"
+    },
+    {
+      "name": "Plug_Power_Sensor",
+      "col": "P_plug"
+    },
+    {
+      "name": "Total_Power_Sensor",
+      "col": "P_total"
+    }
+  ],
+  "ts_id_pattern": "<csv_uri>::<column>"
+}

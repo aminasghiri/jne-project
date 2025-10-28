@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "source": "open-meteo",
+  "geo": {
+    "lat": 31.6295,
+    "lon": -7.9811
+  },
+  "time": {
+    "start_date": "2025-03-01",
+    "days": 30,
+    "dt_minutes": 15,
+    "rows": 2877
+  },
+  "paths": {
+    "base": "/home/amina/DTE/jne_project/raw",
+    "weather_csv": "/home/amina/DTE/jne_project/raw/weather/2025-03/weather.csv",
+    "month": "2025-03"
+  },
+  "columns": [
+    "ts",
+    "weather_temp_c",
+    "weather_rh_pct",
+    "weather_wind_ms",
+    "weather_ghi_wm2"
+  ]
+}
